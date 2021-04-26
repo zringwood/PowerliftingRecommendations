@@ -23,8 +23,22 @@ public class Main extends Canvas implements MouseListener{
 	//Needed for animating the canvas.
 	public int width, height;
 	
+	/*
+	 * Constructor just implements itself as a mouselistener. 
+	 * It needs dimensions so that it can clear the canvas for animation.
+	 */
+	public Main(int width, int height) {
+		super();
+		this.width = width;
+		this.height = height;
+		addMouseListener(this);
+	}
+	
+	
 	//Draws the image to the screen
 	public void paint(Graphics g) {
+		//Clears the canvas, makes sure we don't get overlapping images. 
+		
 		g.clearRect(0, 0, width, height);
 		Toolkit t = Toolkit.getDefaultToolkit();
 		//TODO: Have a user upload an image.
@@ -39,12 +53,6 @@ public class Main extends Canvas implements MouseListener{
 	
 	}
 	
-	public Main(int width, int height) {
-		super();
-		this.width = width;
-		this.height = height;
-		addMouseListener(this);
-	}
 	
 	public static void main(String[] args) {
 		//Display a frame on the screen
@@ -52,7 +60,10 @@ public class Main extends Canvas implements MouseListener{
 		frameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//Eventually we'll set this to the size of the photo automatically
 		frameWindow.setSize(500, 700);
+		//This is there so that we can draw on the screen. 
+		//Not sure if I'll keep it as "main" or not. 
 		Main m = new Main(500,700);
+		
 		frameWindow.add(m);
 		frameWindow.setVisible(true);
 		
