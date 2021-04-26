@@ -8,6 +8,7 @@ public class Main extends Canvas implements MouseListener{
 	
 	//These are the points needed for measuring the proportions of the photo.
 	public static Point[] bioMarkers = new Point[8];
+	//These allow the program to access each biomarker as they've been selected by the user.
 	public static final int ANKLE = 0;
 	public static final int KNEE = 1;
 	public static final int HIP = 2;
