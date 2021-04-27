@@ -2,6 +2,8 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class Main extends Canvas implements MouseListener{
@@ -20,8 +22,6 @@ public class Main extends Canvas implements MouseListener{
 	
 	//This integer tracks the current point being inputted. 
 	private int currentInput = 0;
-	//Needed for animating the canvas.
-	public int width, height;
 	
 	/*
 	 * Constructor just implements itself as a mouselistener. 
@@ -29,8 +29,7 @@ public class Main extends Canvas implements MouseListener{
 	 */
 	public Main(int width, int height) {
 		super();
-		this.width = width;
-		this.height = height;
+		setSize(width,height);
 		addMouseListener(this);
 	}
 	
@@ -38,8 +37,7 @@ public class Main extends Canvas implements MouseListener{
 	//Draws the image to the screen
 	public void paint(Graphics g) {
 		//Clears the canvas, makes sure we don't get overlapping images. 
-		
-		g.clearRect(0, 0, width, height);
+		g.clearRect(0, 0, getWidth(), getHeight());
 		Toolkit t = Toolkit.getDefaultToolkit();
 		//TODO: Have a user upload an image.
 		Image image = t.getImage("exampleImage.png");
@@ -64,25 +62,17 @@ public class Main extends Canvas implements MouseListener{
 		frameWindow.setSize(500, 700);
 		//This is there so that we can draw on the screen. 
 		//Not sure if I'll keep it as "main" or not. 
-		Main m = new Main(500,700);
+		Main m = new Main(500,500);
 		
-		frameWindow.add(m);
+		//frameWindow.add(m);
+		
+		//Adds a reset button.
+		JButton reset = new JButton("Reset");
+		//frameWindow.add(reset);
 		frameWindow.setVisible(true);
 		
 		
 		
-		//Starts the animation. 
-		while(true) {
-			
-			m.paint(m.getGraphics());
-			
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 		
 	}
 
@@ -92,6 +82,7 @@ public class Main extends Canvas implements MouseListener{
 		if(currentInput < bioMarkers.length) {
 		bioMarkers[currentInput] = e.getPoint();
 		currentInput++;
+		paint(getGraphics());
 		}
 	}
 
