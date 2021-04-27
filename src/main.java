@@ -53,7 +53,9 @@ public class Main extends Canvas implements MouseListener{
 	
 	}
 	
-	
+	/*
+	 * TODO: Split the JFrame between the canvas, a text area, and a button. 
+	 */
 	public static void main(String[] args) {
 		//Display a frame on the screen
 		JFrame frameWindow = new JFrame("Powerlifting Recommendations");
